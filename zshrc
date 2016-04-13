@@ -22,7 +22,7 @@ bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-backward
 
 TRAPALRM() {
-    if [ "$WIDGET" != "complete-word" ]; then
+    if [ "$WIDGET" != "expand-or-complete" ]; then
         zle reset-prompt
     fi
 }
