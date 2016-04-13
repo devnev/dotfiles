@@ -37,3 +37,4 @@ alias ipysh='ipython --profile pysh --no-confirm-exit --no-banner'
 alias apt-install='sudo apt-get install'
 vlgd() { godoc "$@" | vl; }
 vgd() { godoc "$@" | vl; }
+alias copy='xclip -selection clipboard'
