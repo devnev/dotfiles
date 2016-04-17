@@ -11,6 +11,8 @@ Bundle 'tpope/vim-surround'
 Bundle 'uarun/vim-protobuf'
 Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
+Bundle 'fatih/vim-go'
+Bundle 'Shougo/neocomplete.vim'
 
 " Reenable filetype stuff
 filetype plugin indent on
@@ -37,6 +39,7 @@ set linebreak
 set mouse=a
 set scrolloff=3
 colorscheme mustang
+let g:neocomplete#enable_at_startup = 1
 
 autocmd BufNewFile,BufRead *.ll setf lex
 autocmd BufNewFile,BufRead *.yy setf yacc
