@@ -13,6 +13,7 @@ Bundle 'kien/ctrlp.vim'
 Bundle 'ervandew/supertab'
 Bundle 'fatih/vim-go'
 Bundle 'Shougo/neocomplete.vim'
+Bundle 'majutsushi/tagbar'
 
 " Reenable filetype stuff
 filetype plugin indent on
@@ -39,6 +40,7 @@ set linebreak
 set mouse=a
 set scrolloff=3
 colorscheme mustang
+set updatetime=1000
 let g:neocomplete#enable_at_startup = 1
 
 autocmd BufNewFile,BufRead *.ll setf lex
@@ -115,3 +117,32 @@ if has("autocmd")
   nnoremap <silent><F7> :call ToggleCWordMatch()<CR>
   nnoremap <silent><F6> :call FixCWordMatch()<CR>
 endif
+
+nnoremap <silent><F8> :TagbarToggle<CR>
+let g:tagbar_type_go = {
+  \ 'ctagstype' : 'go',
+  \ 'kinds' : [
+    \ 'p:package',
+    \ 'i:imports:1',
+    \ 'c:constants',
+    \ 'v:variables',
+    \ 't:types',
+    \ 'n:interfaces',
+    \ 'w:fields',
+    \ 'e:embedded',
+    \ 'm:methods',
+    \ 'r:constructor',
+    \ 'f:functions',
+  \ ],
+  \ 'sro' : '.',
+  \ 'kind2scope' : {
+    \ 't' : 'ctype',
+    \ 'n' : 'ntype'
+  \ },
+  \ 'scope2kind': {
+    \ 'ctype' : 't',
+    \ 'ntype' : 'n',
+  \ },
+  \ 'ctagsbin' : 'gotags',
+  \ 'ctagsargs' : '--sort --silent',
+\ }
