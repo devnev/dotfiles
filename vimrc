@@ -24,6 +24,8 @@ set tabstop=4
 set shiftwidth=2
 set softtabstop=2
 set expandtab
+set ignorecase
+set smartcase
 nmap s <C-W>
 nmap sN :vnew<CR>
 inoremap kj <esc>
