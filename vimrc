@@ -44,6 +44,7 @@ set scrolloff=3
 colorscheme mustang
 set updatetime=1000
 let g:neocomplete#enable_at_startup = 1
+let g:go_fmt_command = "goimports"
 
 autocmd BufNewFile,BufRead *.ll setf lex
 autocmd BufNewFile,BufRead *.yy setf yacc
