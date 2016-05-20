@@ -38,3 +38,4 @@ alias api='sudo apt-get install'
 vlgd() { godoc "$@" | vl; }
 vgd() { godoc "$@" | vl; }
 alias copy='xclip -selection clipboard'
+alias blaze=bazel

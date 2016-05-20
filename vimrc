@@ -26,6 +26,7 @@ set softtabstop=2
 set expandtab
 set ignorecase
 set smartcase
+set showcmd
 nmap s <C-W>
 nmap sN :vnew<CR>
 inoremap kj <esc>
