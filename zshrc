@@ -21,6 +21,7 @@ antigen bundle vi-mode
 antigen bundle djui/alias-tips
 antigen theme --url=oskarkrawczyk/honukai-iterm-zsh --loc=honukai.zsh-theme
 antigen bundle supercrabtree/k
+antigen bundle https://github.com/bazelbuild/bazel.git scripts/zsh_completion
 antigen apply
 
 export EDITOR=vim

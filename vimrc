@@ -59,6 +59,8 @@ autocmd BufNewFile,BufRead *.tex setf tex
 autocmd BufNewFile,BufRead *.h setf c
 autocmd BufNewFile,BufRead *.tla setf tla
 autocmd BufNewFile,BufRead *.zsh-theme setf zsh
+autocmd BufNewFile,BufRead *.bzl set ft=python
+autocmd BufNewFile,BufRead BUILD set ft=python
 autocmd Filetype javascript setlocal sw=4 sts=4 noet breakindentopt=shift:8
 autocmd Filetype xml setlocal ts=4 et sts=2 sw=2
 autocmd Filetype lisp setlocal ts=8 et sts=2 sw=2
