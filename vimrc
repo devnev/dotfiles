@@ -14,6 +14,7 @@ Bundle 'ervandew/supertab'
 Bundle 'fatih/vim-go'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'majutsushi/tagbar'
+"Bundle 'Valloric/YouCompleteMe'
 
 " Reenable filetype stuff
 filetype plugin indent on
@@ -46,6 +47,8 @@ colorscheme mustang
 set updatetime=1000
 let g:neocomplete#enable_at_startup = 1
 let g:go_fmt_command = "goimports"
+let g:syntastic_cpp_compiler = 'clang++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14 -stdlib=libstdc++'
 
 autocmd BufNewFile,BufRead *.ll setf lex
 autocmd BufNewFile,BufRead *.yy setf yacc
