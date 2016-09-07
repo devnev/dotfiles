@@ -40,3 +40,12 @@ vgd() { godoc "$@" | vl ; }
 alias copy='xclip -selection clipboard'
 alias blaze=bazel
 lscat() { find "$@" -maxdepth 0 -type f -print -exec cat '{}' \; ; }
+
+# go
+gohere() {
+  #GOPATH="${GOPATH+$GOPATH:}${PWD}" go "$@"
+  #echo GOPATH="${PWD}${GOPATH+:$GOPATH}" go "$@"
+  #GOPATH="${PWD}${GOPATH+:$GOPATH}" go "$@"
+  #GOPATH="${GOPATH+$GOPATH:}${PWD}" go "$@"
+  GOPATH="$PWD" go "$@"
+}
