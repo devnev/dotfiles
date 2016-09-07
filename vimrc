@@ -64,6 +64,7 @@ autocmd BufNewFile,BufRead *.tla setf tla
 autocmd BufNewFile,BufRead *.zsh-theme setf zsh
 autocmd BufNewFile,BufRead *.bzl set ft=python
 autocmd BufNewFile,BufRead BUILD set ft=python
+autocmd BufNewFile,BufRead *.jsonschema set ft=json
 autocmd Filetype javascript setlocal sw=4 sts=4 noet breakindentopt=shift:8
 autocmd Filetype xml setlocal ts=4 et sts=2 sw=2
 autocmd Filetype lisp setlocal ts=8 et sts=2 sw=2
@@ -83,9 +84,10 @@ autocmd Filetype proto setlocal ts=4 et sts=2 sw=2 ai si
 autocmd Filetype rust setlocal ts=4 et sts=2 sw=2
 autocmd Filetype css setlocal et sts=2 sw=2
 autocmd Filetype groovy setlocal et sts=2 sw=2
-autocmd Filetype html setlocal noet ts=4 sts=4 sw=4
+autocmd Filetype html setlocal et ts=4 sts=2 sw=2
 autocmd Filetype python setlocal noet ts=8 sts=2 sw=2
 autocmd FileType go setlocal noet ts=2 sts=2 sw=2
+autocmd FileType javascript setlocal et ts=8 sts=2 sw=2
 
 if has("autocmd")
   let g:wordhi = 0
