@@ -23,7 +23,7 @@ vinfo() { info "$@" | vl -c 'set ft=info' - ; }
 alias gst='git status'
 alias gau='git add -u'
 alias gaup='git add -u -p'
-alias tiga='tig --all'
+alias tiga='env TIG_DIFF_OPTS="-M -C --find-copies-harder" tig --all HEAD'
 alias gitka='gitk --all'
 [ -n "$BASH_VERSION" ] && complete -o default -o nospace -f _tig tiga
 gd() { git diff -M -C --find-copies-harder "$@" | vl ; }
