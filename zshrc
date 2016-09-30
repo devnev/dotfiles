@@ -24,6 +24,7 @@ antigen bundle supercrabtree/k
 antigen bundle https://github.com/bazelbuild/bazel.git scripts/zsh_completion
 antigen apply
 
+setopt PRINT_EXIT_VALUE
 export EDITOR=vim
 unalias api
 unalias rd
