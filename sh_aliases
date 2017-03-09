@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 alias _ >/dev/null 2>&1 && unalias _
 alias rm >/dev/null 2>&1 && unalias rm
@@ -29,23 +29,36 @@ alias gitka='gitk --all'
 gd() { git diff -M -C --find-copies-harder "$@" | vl ; }
 gdc() { git diff --cached -M -C --find-copies-harder "$@" | vl ; }
 
+# go
+gohere() { 
+  local GOPATH="${PWD%/src/*}"
+  local PATH="$PATH:${GOPATH//:/\/bin:}/bin"
+  env GOPATH="$GOPATH" PATH="$PATH" go "$@"
+}
+gohererun() {
+  local GOPATH="${PWD%/src/*}"
+  local PATH="$PATH:${GOPATH//:/\/bin:}/bin"
+  env GOPATH="$GOPATH" PATH="$PATH" "$@"
+}
+
 # misc
 q() { "$@" >/dev/null 2>&1 ; }
-alias gping='ping 8.8.8.8'
+alias gping='ping -OD 8.8.8.8'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 alias ipysh='ipython --profile pysh --no-confirm-exit --no-banner'
 alias api='sudo apt-get install'
+alias aps='aptitude search'
 vlgd() { godoc "$@" | vl ; }
 vgd() { godoc "$@" | vl ; }
 alias copy='xclip -selection clipboard'
 alias blaze=bazel
 lscat() { find "$@" -maxdepth 0 -type f -print -exec cat '{}' \; ; }
-
-# go
-gohere() {
-  #GOPATH="${GOPATH+$GOPATH:}${PWD}" go "$@"
-  #echo GOPATH="${PWD}${GOPATH+:$GOPATH}" go "$@"
-  #GOPATH="${PWD}${GOPATH+:$GOPATH}" go "$@"
-  #GOPATH="${GOPATH+$GOPATH:}${PWD}" go "$@"
-  GOPATH="$PWD" go "$@"
+psgrep() { ps -ef | grep "$@"; true ; }
+onetail() {
+  while read l; do
+    echo -en "\033[2K"
+    echo "$l" | cut -c-100 | tr -d '\n'
+    echo -en '\r'
+    #sleep 0.2
+  done
 }
