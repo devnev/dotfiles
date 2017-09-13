@@ -1,30 +1,29 @@
-" Vundle setup
+set nocompatible
+
 filetype off
-set rtp+=~/.vim/bundle/vundle/
-call vundle#rc()
-Bundle 'gmarik/vundle'
+call plug#begin("~/.config/nvim/bundle")
+Plug 'editorconfig/editorconfig-vim'
+Plug 'Shougo/deoplete.nvim'
+Plug 'junegunn/fzf', { 'dir': '~/.local/share/fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
+Plug 'tpope/vim-fugitive'
+Plug 'wellle/targets.vim'
+Plug 'terryma/vim-multiple-cursors'
+"Plug 'Valloric/YouCompleteMe'
+Plug 'Shougo/unite.vim' " required by vimfiler
+Plug 'Shougo/vimfiler.vim'
 
-" Bundles
-Bundle 'scrooloose/syntastic'
-Bundle 'tpope/vim-fugitive'
-Bundle 'tpope/vim-surround'
-Bundle 'uarun/vim-protobuf'
-Bundle 'kien/ctrlp.vim'
-Bundle 'ervandew/supertab'
-Bundle 'fatih/vim-go'
-Bundle 'Shougo/neocomplete.vim'
-Bundle 'majutsushi/tagbar'
-Bundle 'mxw/vim-jsx'
-Bundle 'vim-scripts/syntaxm4.vim'
-Bundle 'google/vim-jsonnet'
-Bundle 'stephpy/vim-yaml'
-Bundle 'editorconfig/editorconfig-vim'
-Bundle 'leafgarland/typescript-vim'
+Plug 'mhartington/nvim-typescript'
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'fatih/vim-go'
+Plug 'zchee/deoplete-go', { 'do': 'make'}
 
-" Reenable filetype stuff
-filetype plugin indent on
+Plug 'morhetz/gruvbox'
+Plug 'croaker/mustang-vim'
+call plug#end()
 
 " Actual settings start here
+let mapleader=","
 set number
 set tabstop=4
 set shiftwidth=2
@@ -36,27 +35,33 @@ set showcmd
 set modeline
 nmap s <C-W>
 nmap sN :vnew<CR>
-inoremap kj <esc>
-inoremap jk <esc>
+"inoremap kj <esc>
+"inoremap jk <esc>
 command W w
 command Q q
 set noexrc " =default, but important
+colorscheme mustang
 set pastetoggle=<F9>
 noremap ; :
-nmap <CR> :w<CR>
-nmap <leader>c :let @+=@0<CR>
 set breakindent
 set breakindentopt=shift:4
 set linebreak
 set mouse=a
-set scrolloff=3
-colorscheme mustang
+set scrolloff=5
 set updatetime=1000
-let g:neocomplete#enable_at_startup = 1
-let g:go_fmt_command = "impformat"
-let g:syntastic_cpp_compiler = 'clang++'
-let g:syntastic_cpp_compiler_options = ' -std=c++14 -stdlib=libstdc++'
-let g:syntastic_javascript_checkers = ['eslint']
+set noswapfile
+set completeopt=menu
+let g:deoplete#enable_at_startup = 1
+let g:vimfiler_as_default_explorer = 1
+"nnoremap <leader>f :Files!<CR>
+nnoremap <leader>f :call fzf#run({ 'sink': 'e', 'window': 'enew' })<cr>
+nnoremap <leader>w :wa<CR>
+nnoremap <leader>c :let @+=@0<CR>
+
+
+if has("autocmd")
+  au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
+endif
 
 autocmd BufNewFile,BufRead *.ll setf lex
 autocmd BufNewFile,BufRead *.yy setf yacc
@@ -78,6 +83,7 @@ autocmd BufNewFile,BufRead */etc/hosts set ft=hostconf
 autocmd BufNewFile,BufRead ~/.kube/config set ft=yaml
 autocmd BufNewFile,BufRead *.yml.tmpl set ft=yaml
 autocmd BufNewFile,BufRead *.service set ft=systemd
+autocmd BufRead,BufNewFile *.ts set ft=typescript
 autocmd Filetype javascript setlocal sw=2 sts=2 et breakindentopt=shift:4
 autocmd Filetype xml setlocal ts=4 et sts=2 sw=2
 autocmd Filetype lisp setlocal ts=8 et sts=2 sw=2
@@ -103,80 +109,13 @@ autocmd FileType go setlocal noet ts=2 sts=2 sw=2
 autocmd FileType javascript setlocal et ts=8 sts=2 sw=2
 autocmd FileType yaml highlight link yamlKey Normal
 autocmd FileType make setlocal noet ts=4 sts=4 sw=4
+autocmd FileType typescript nmap gd :TSDef<CR>
+autocmd FileType typescript nmap <leader>r :TSRefs<CR>
+autocmd FileType typescript nmap <leader>b :TSGetErr<CR>
+autocmd FileType go nnoremap <leader>b :w<CR>:GoBuild<CR>
+autocmd FileType go nnoremap <leader>t :w<CR>:GoTestFunc<CR>
+autocmd FileType go nnoremap <leader>d :w<CR>:GoDoc<CR>
+autocmd FileType go nnoremap <leader>r :w<CR>:GoReferrers<CR>
+autocmd FileType go nnoremap <leader>i :w<CR>:GoImplements<CR>
 
-if has("autocmd")
-  let g:wordhi = 0
-
-  aug wordhi
-    au!
-  aug END
-
-  fun! MatchCWord()
-    sil! exe printf('sil mat IncSearch /\<%s\>/', expand('<cword>'))
-  endfun
-
-  fun! ToggleCWordMatch()
-    let g:wordhi = !g:wordhi
-    if g:wordhi
-      au wordhi CursorMoved * call MatchCWord()
-      call MatchCWord()
-      redraw
-      echo "wordhi on"
-    else
-      au! wordhi
-      match
-      redraw
-      echo "wordhi off"
-    endif
-  endfun
-
-  fun! FixCWordMatch()
-    if g:wordhi
-      au! wordhi
-    else
-      let g:wordhi = 1
-    endif
-    call MatchCWord()
-    echo "wordhi fix"
-  endfun
-
-  nnoremap <silent><F7> :call ToggleCWordMatch()<CR>
-  nnoremap <silent><F6> :call FixCWordMatch()<CR>
-endif
-
-nnoremap <silent><F8> :TagbarToggle<CR>
-let g:tagbar_type_go = {
-  \ 'ctagstype' : 'go',
-  \ 'kinds' : [
-    \ 'p:package',
-    \ 'i:imports:1',
-    \ 'c:constants',
-    \ 'v:variables',
-    \ 't:types',
-    \ 'n:interfaces',
-    \ 'w:fields',
-    \ 'e:embedded',
-    \ 'm:methods',
-    \ 'r:constructor',
-    \ 'f:functions',
-  \ ],
-  \ 'sro' : '.',
-  \ 'kind2scope' : {
-    \ 't' : 'ctype',
-    \ 'n' : 'ntype'
-  \ },
-  \ 'scope2kind': {
-    \ 'ctype' : 't',
-    \ 'ntype' : 'n',
-  \ },
-  \ 'ctagsbin' : 'gotags',
-  \ 'ctagsargs' : '--sort --silent',
-\ }
-
-nmap <leader>sp :call <SID>SynStack()<CR>
-function! <SID>SynStack()
-  if !exists("*synstack")
-    return
-  endif
-  echo map(synstack(line('.'), col('.')), 'synIDattr(v:val, "name")')
-endfunc
+nnoremap <leader>s :call fzf#run({ 'source': 'rg --follow go/src 2>/dev/null', 'sink': 'e', 'window': 'enew' })<CR>

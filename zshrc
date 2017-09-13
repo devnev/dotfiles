@@ -14,7 +14,7 @@ antigen use oh-my-zsh
 antigen bundle catimg
 antigen bundle command-not-found
 antigen bundle common-aliases
-antigen bundle debian
+#antigen bundle debian
 antigen bundle gradle
 antigen bundle sublime
 antigen bundle vi-mode
@@ -26,7 +26,7 @@ antigen apply
 
 setopt PRINT_EXIT_VALUE
 export EDITOR=vim
-unalias api
+#unalias api
 unalias rd
 source ~/.sh_aliases
 bindkey -M viins '^R' history-incremental-search-backward
@@ -34,11 +34,14 @@ bindkey -M vicmd '?' history-incremental-search-backward
 
 [ -r "$HOME/.machine_env.sh" ] && source "$HOME/.machine_env.sh"
 
-TRAPALRM() {
-  if [ "$WIDGET" != "expand-or-complete" ]; then
-    zle reset-prompt
-  fi
-}
-TMOUT=1
+# TRAPALRM() {
+#  if [ "$WIDGET" != "expand-or-complete" ]; then
+#    zle reset-prompt
+#  fi
+#}
+#TMOUT=1
 
 export PATH="$HOME/.local/bin:$PATH"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+eval "$(direnv hook zsh)"
