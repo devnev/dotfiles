@@ -5,7 +5,7 @@ if [ ! -d "$(dirname $ANTIGEN)" ] ; then
   mkdir -p "$(dirname $ANTIGEN)"
 fi
 if [ ! -r "$ANTIGEN" ] ; then
-  curl -L https://raw.githubusercontent.com/zsh-users/antigen/master/antigen.zsh > "$ANTIGEN"
+  curl -L https://git.io/antigen > "$ANTIGEN"
 fi
 
 # Setup zsh plugins using antigen
@@ -14,7 +14,6 @@ antigen use oh-my-zsh
 antigen bundle catimg
 antigen bundle command-not-found
 antigen bundle common-aliases
-#antigen bundle debian
 antigen bundle gradle
 antigen bundle sublime
 antigen bundle vi-mode
@@ -26,7 +25,6 @@ antigen apply
 
 setopt PRINT_EXIT_VALUE
 export EDITOR=vim
-#unalias api
 unalias rd
 source ~/.sh_aliases
 bindkey -M viins '^R' history-incremental-search-backward

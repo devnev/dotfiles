@@ -12,6 +12,8 @@ alias la='ls -A'
 alias lsd='ls -d'
 
 # vim
+export EDITOR=nvim
+alias vim=nvim
 alias gvt='gvim --remote-tab'
 vl() { vim -R -c 'set nomod nolist noma' -c 'map q :q<CR>' "${@:--}" ; }
 vman() { man "$@" | vl -c 'set ft=man' - ; }
@@ -26,11 +28,16 @@ alias gst='git status'
 alias gau='git add -u'
 alias gaup='git add -u -p'
 alias gco='git checkout'
+alias gp='git pull --prune'
+alias gf='git fetch --prune'
+alias gps='git push'
 alias tiga='env TIG_DIFF_OPTS="-M -C --find-copies-harder" tig --all HEAD'
 tigl() {
   local branches
+  local tags
   branches=($(git branch | sed 's/^[ *]*//'))
-  env TIG_DIFF_OPTS="-M -C --find-copies-harder" tig "${branches[@]}" origin/master HEAD
+  tags=($(git tag))
+  env TIG_DIFF_OPTS="-M -C --find-copies-harder" tig "${branches[@]}" "${tags[@]}" origin/master HEAD
 }
 alias gitka='gitk --all'
 [ -n "$BASH_VERSION" ] && complete -o default -o nospace -f _tig tiga
@@ -72,3 +79,4 @@ onetail() {
   done
 }
 alias ccat='pygmentize -f 16m -O bg=dark,style=trac'
+alias rg='rg --hidden'

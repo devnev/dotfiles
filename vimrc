@@ -1,6 +1,6 @@
 " Vundle setup
 filetype off
-set rtp+=~/.vim/bundle/vundle/
+set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#rc()
 Bundle 'gmarik/vundle'
 
@@ -20,6 +20,9 @@ Bundle 'google/vim-jsonnet'
 Bundle 'stephpy/vim-yaml'
 Bundle 'editorconfig/editorconfig-vim'
 Bundle 'leafgarland/typescript-vim'
+Bundle 'google/vim-maktaba'
+Bundle 'bazelbuild/vim-bazel'
+Bundle 'vim-scripts/vim-auto-save'
 
 " Reenable filetype stuff
 filetype plugin indent on
@@ -52,6 +55,7 @@ set mouse=a
 set scrolloff=3
 colorscheme mustang
 set updatetime=1000
+let g:auto_save_no_updatetime = 1  " do not change the 'updatetime' option
 let g:neocomplete#enable_at_startup = 1
 let g:go_fmt_command = "impformat"
 let g:syntastic_cpp_compiler = 'clang++'
@@ -70,8 +74,10 @@ autocmd BufNewFile,BufRead *.tex setf tex
 autocmd BufNewFile,BufRead *.h setf c
 autocmd BufNewFile,BufRead *.tla setf tla
 autocmd BufNewFile,BufRead *.zsh-theme setf zsh
-autocmd BufNewFile,BufRead *.bzl set ft=python
-autocmd BufNewFile,BufRead BUILD set ft=python
+autocmd BufNewFile,BufRead *.bzl set ft=bzl
+autocmd BufNewFile,BufRead BUILD set ft=bzl
+autocmd BufNewFile,BufRead WORKSPACE set ft=bzl
+autocmd BufNewFile,BufRead BUILD.bazel set ft=bzl
 autocmd BufNewFile,BufRead *.jsonschema set ft=json
 autocmd Filetype javascript setlocal sw=4 sts=4 noet breakindentopt=shift:8
 autocmd BufNewFile,BufRead */etc/hosts set ft=hostconf
@@ -99,7 +105,7 @@ autocmd Filetype css setlocal et sts=2 sw=2
 autocmd Filetype groovy setlocal et sts=2 sw=2
 autocmd Filetype html setlocal et ts=4 sts=2 sw=2
 autocmd Filetype python setlocal et ts=8 sts=2 sw=2
-autocmd FileType go setlocal noet ts=2 sts=2 sw=2
+autocmd FileType go setlocal noet ts=2 sts=2 sw=2 tw=100
 autocmd FileType javascript setlocal et ts=8 sts=2 sw=2
 autocmd FileType yaml highlight link yamlKey Normal
 autocmd FileType make setlocal noet ts=4 sts=4 sw=4
