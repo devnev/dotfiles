@@ -14,6 +14,7 @@ Bundle 'ervandew/supertab'
 Bundle 'fatih/vim-go'
 Bundle 'Shougo/neocomplete.vim'
 Bundle 'majutsushi/tagbar'
+Bundle 'tikhomirov/vim-glsl'
 Bundle 'mxw/vim-jsx'
 Bundle 'vim-scripts/syntaxm4.vim'
 Bundle 'google/vim-jsonnet'
@@ -23,6 +24,7 @@ Bundle 'leafgarland/typescript-vim'
 Bundle 'google/vim-maktaba'
 Bundle 'bazelbuild/vim-bazel'
 Bundle 'vim-scripts/vim-auto-save'
+"Bundle 'Valloric/YouCompleteMe'
 
 " Reenable filetype stuff
 filetype plugin indent on
@@ -44,6 +46,7 @@ inoremap jk <esc>
 command W w
 command Q q
 set noexrc " =default, but important
+set modeline
 set pastetoggle=<F9>
 noremap ; :
 nmap <CR> :w<CR>

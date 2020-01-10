@@ -12,6 +12,7 @@ Plug 'terryma/vim-multiple-cursors'
 "Plug 'Valloric/YouCompleteMe'
 Plug 'Shougo/unite.vim' " required by vimfiler
 Plug 'Shougo/vimfiler.vim'
+Plug 'croaker/mustang-vim'
 
 Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'

@@ -26,6 +26,7 @@ antigen apply
 setopt PRINT_EXIT_VALUE
 export EDITOR=vim
 unalias rd
+unalias age
 source ~/.sh_aliases
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-backward
@@ -39,6 +40,7 @@ bindkey -M vicmd '?' history-incremental-search-backward
 #}
 #TMOUT=1
 
+HISTORY_IGNORE="(fg|bg)"
 export PATH="$HOME/.local/bin:$PATH"
 
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
