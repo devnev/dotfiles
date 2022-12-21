@@ -16,7 +16,7 @@ Plug 'croaker/mustang-vim'
 
 Plug 'mhartington/nvim-typescript'
 Plug 'HerringtonDarkholme/yats.vim'
-Plug 'fatih/vim-go'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 Plug 'zchee/deoplete-go', { 'do': 'make'}
 
 Plug 'morhetz/gruvbox'
@@ -54,6 +54,9 @@ set noswapfile
 set completeopt=menu
 let g:deoplete#enable_at_startup = 1
 let g:vimfiler_as_default_explorer = 1
+call deoplete#custom#option('omni_patterns', {
+\ 'go': '[^. *\t]\.\w*',
+\})
 "nnoremap <leader>f :Files!<CR>
 nnoremap <leader>f :call fzf#run({ 'sink': 'e', 'window': 'enew' })<cr>
 nnoremap <leader>w :wa<CR>

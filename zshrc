@@ -26,7 +26,6 @@ antigen apply
 setopt PRINT_EXIT_VALUE
 export EDITOR=vim
 unalias rd
-unalias age
 source ~/.sh_aliases
 bindkey -M viins '^R' history-incremental-search-backward
 bindkey -M vicmd '?' history-incremental-search-backward
